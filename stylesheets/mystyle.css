@@ -60,7 +60,6 @@ code {
     padding-bottom: 15px;
 }
 
-
 .margin-15 {
     margin: 15px;
 }
@@ -79,4 +78,12 @@ code {
 
 .margin-bottom-15 {
     margin-bottom: 15px;
+}
+
+.text-author {
+    color: #999;
+}
+
+.text-quote {
+    color: #555;
 }
