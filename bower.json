@@ -1,0 +1,24 @@
+{
+  "name": "quotesform",
+  "description": "Public domain for quotes and messages",
+  "main": "index.js",
+  "authors": [
+    "paramananda pradhan"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "quotes"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ui-select": "angular-ui-select#~0.14.9"
+  }
+}

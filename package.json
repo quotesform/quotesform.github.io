@@ -1,0 +1,29 @@
+{
+  "name": "quotesform",
+  "version": "1.0.0",
+  "description": "Public domain for quotes and messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/paramananda/quotesform.git"
+  },
+  "keywords": [
+    "quotes"
+  ],
+  "author": "paramananda pradhan",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/paramananda/quotesform#readme",
+  "dependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-uglify": "^1.5.1",
+    "lodash": "^4.5.1"
+  }
+}

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/">
     <link rel="icon" href="/favicon.ico">
+    <base href="/">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Signup | Quotesform.com</title>
+    <title>Logout | Quotesform.com</title>
 
 
     <!-- Bootstrap -->
@@ -48,7 +48,7 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="HomePageController">
+<body ng-app="QuotesFormApp" ng-controller="LogoutController">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
@@ -56,34 +56,9 @@
 
 <!-- Begin page content -->
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row margin-top-15">
-                <div ng-repeat="item in quotes" class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{item.text}}
-                                </div>
-                                <div class="col-md-12 text-muted text-right">
-                                    <cite>
-                                        <small>
-                                            ― {{item.author.name}}
-                                        </small>
-                                    </cite>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
 
-        </div>
-
-    </div>
+    <h1>Logout successful.</h1>
+    <a href="/" class="btn btn-primary" target="_self">Continue reading</a>
 
 </div>
 

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/">
     <link rel="icon" href="/favicon.ico">
+    <base href="/">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Signup | Quotesform.com</title>
+    <title>Categories | Quotesform.com</title>
 
 
     <!-- Bootstrap -->
@@ -48,36 +48,66 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="HomePageController">
+<body ng-app="QuotesFormApp" ng-controller="CategoryController">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
 
+<!-- new-categories modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="new-category">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New category</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Category</label>
 
-<!-- Begin page content -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row margin-top-15">
-                <div ng-repeat="item in quotes" class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{item.text}}
-                                </div>
-                                <div class="col-md-12 text-muted text-right">
-                                    <cite>
-                                        <small>
-                                            ― {{item.author.name}}
-                                        </small>
-                                    </cite>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="input-text" ng-model="category.text" autofocus
+                                           tabindex="1"
+                                           ng-enter="save()"
+                                           placeholder="Category"/>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="save()" tabindex="2">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="3">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<!-- Begin page content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row margin-top-15">
+                <div class="col-md-10">Category</div>
+                <div class="col-md-2 pull-right text-right">
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#new-category">New</a>
+                </div>
+            </div>
+            <hr>
+            <div class="row margin-top-15">
+                <div ng-repeat="c in categories | orderBy:'text'" class="col-md-4">{{c.text}}</div>
+            </div>
+
         </div>
         <div class="col-md-4">
 
@@ -85,8 +115,8 @@
 
     </div>
 
-</div>
 
+</div>
 
 <!-- FOOTER -->
 <div ng-include="'/views/footer.html'"></div>

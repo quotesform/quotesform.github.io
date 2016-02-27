@@ -1,0 +1,8 @@
+{
+  "css": [
+    "bower_components/ui-select/dist/select.min.css"
+  ],
+  "js": [
+    "bower_components/ui-select/dist/select.min.js"
+  ]
+}
