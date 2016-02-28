@@ -1,0 +1,132 @@
+#!/usr/bin/env node
+var request = require('request');
+var path = require('path');
+var program = require('commander');
+var fs = require('fs');
+var glob = require("glob");
+
+var url = '';
+var file = '';
+var email = '';
+var password = '';
+var authUrl = 'http://localhost:3000/login'
+
+var needFile = false;
+var needUrl = false;
+
+var needAuthUrl = false;
+var needEmail = false;
+var needPassword = false;
+
+for (var i = 2; i < process.argv.length; i++) {
+    arg = process.argv[i];
+    console.log(arg);
+    if (needUrl) {
+        url = arg;
+        needUrl = false;
+        continue;
+    }
+    if (needFile) {
+        file = arg;
+        needFile = false;
+        continue;
+    }
+
+    if (needEmail) {
+        email = arg;
+        needEmail = false;
+        continue;
+    }
+
+    if (needPassword) {
+        password = arg;
+        needPassword = false;
+        continue;
+    }
+    if (needAuthUrl) {
+        authUrl = arg;
+        needAuthUrl = false;
+        continue;
+    }
+
+    switch (arg) {
+        case '-u':
+            needUrl = true;
+            break;
+        case '-f':
+            needFile = true;
+            break;
+        case '-e':
+            needEmail = true;
+            break;
+        case '-p':
+            needPassword = true;
+            break;
+        case '-a':
+            needAuthUrl = true;
+            break;
+    }
+
+}
+
+console.log('URL = ' + url);
+console.log('FILE = ' + file);
+
+if (!file || !url) {
+    console.error('Invalid input');
+    return;
+}
+
+file = path.resolve(file);
+console.log('FILE Absolute path = ' + file);
+
+fs.readFile(file, function (err, data) {
+    if (err) {
+        return console.error(err);
+    }
+    var json = JSON.parse(data);
+    if (json && json.length > 0) {
+
+        console.log('Trying to login ... url = ' + authUrl);
+        if (email && password) {
+            request.post(
+                authUrl,
+                {form: {email: email, password: password}},
+                function (error, response, body) {
+                    //console.dir(response);
+                    //console.log('got response err = ' + err + ', response = ' + response + ', body = ' + body);
+                    if (!error && response.statusCode == 200) {
+                        //console.log(body)
+                        body = JSON.parse(body);
+                        token = body.token;
+                        console.log('token = ' + token);
+
+                        url = url + '?token=' + token;
+                        for (var i = 0; i < json.length; i++) {
+                            var item = json[i];
+                            console.dir(item);
+                            request.post(
+                                url,
+                                {form: item},
+                                function (error, response, body) {
+                                    if (!error && response.statusCode == 200) {
+                                        console.log(body)
+                                    }
+                                }
+                            );
+                        }
+                    }
+                }
+            );
+        } else {
+            console.error('Invalid input for authentication');
+            return;
+        }
+
+    }
+});
+
+/*
+
+
+ */

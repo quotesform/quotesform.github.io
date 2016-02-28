@@ -99,8 +99,8 @@
         <div class="col-md-8">
             <div class="row margin-top-15">
                 <div class="col-md-10">Tags</div>
-                <div class="col-md-2 pull-right text-right">
-                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#new-tag">New</a>
+                <div class="col-md-2 pull-right text-right" ng-if="app.auth.user.score > 100">
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#new-tag">New Tag</a>
                 </div>
             </div>
             <hr>
