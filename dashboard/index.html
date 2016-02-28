@@ -87,8 +87,9 @@
                                         <ui-select-match>
                                             <span ng-bind="$select.selected.name"></span>
                                         </ui-select-match>
-                                        <ui-select-choices
-                                                repeat="item in (authors| orderBy: 'name' | filter: $select.search) track by item._id">
+                                        <ui-select-choices refresh="refreshAuthors($select.search)"
+                                                           refresh-delay="1000"
+                                                           repeat="item in (authors| orderBy: 'name' | filter: $select.search) track by item._id">
                                             <span ng-bind="item.name"></span>
                                         </ui-select-choices>
                                     </ui-select>
