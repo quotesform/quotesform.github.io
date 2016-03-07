@@ -105,7 +105,7 @@
             </div>
             <hr>
             <div class="row margin-top-15">
-                <div ng-repeat="a in authors | orderBy:'name'" class="col-md-6">{{a.name}}</div>
+                <div  ng-repeat="item in authors | orderBy:'name'" class="col-md-6 author-name">{{item.name}}</div>
             </div>
 
         </div>

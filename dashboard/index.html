@@ -69,21 +69,10 @@
                         <form class="form-horizontal">
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Quote text</label>
-
-                                <div class="col-sm-10">
-                                    <textarea rows="8" class="form-control" id="input-text" ng-model="quote.text"
-                                              autofocus ng-ctrl-enter="save()"
-                                              tabindex="1"
-                                              placeholder="Quote text"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Author</label>
 
                                 <div class="col-sm-10">
-                                    <ui-select ng-model="quote.author" tabindex="2">
+                                    <ui-select ng-model="quote.author" tabindex="1">
                                         <ui-select-match>
                                             <span ng-bind="$select.selected.name"></span>
                                         </ui-select-match>
@@ -97,10 +86,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" tabindex="3">Language</label>
+                                <label class="col-sm-2 control-label" tabindex="2">Language</label>
 
                                 <div class="col-sm-10">
-                                    <ui-select ng-model="quote.language" tabindex="4">
+                                    <ui-select ng-model="quote.language" tabindex="2">
                                         <ui-select-match>
                                             <span ng-bind="$select.selected.text"></span>
                                         </ui-select-match>
@@ -109,6 +98,17 @@
                                             <span ng-bind="item.text"></span>
                                         </ui-select-choices>
                                     </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Quote text</label>
+
+                                <div class="col-sm-10">
+                                    <textarea rows="8" class="form-control" id="input-text" ng-model="quote.text"
+                                              autofocus ng-ctrl-enter="save()"
+                                              tabindex="3"
+                                              placeholder="Quote text"></textarea>
                                 </div>
                             </div>
 
