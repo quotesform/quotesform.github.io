@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "ui-select": "angular-ui-select#~0.14.9"
+    "ui-select": "angular-ui-select#~0.14.9",
+    "textAngular": "~1.4.6"
   }
 }

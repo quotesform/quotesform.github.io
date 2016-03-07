@@ -10,6 +10,8 @@
     <title>Dashboard | Quotesform.com | Put here what in your mind</title>
 
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -105,10 +107,19 @@
                                 <label class="col-sm-2 control-label">Quote text</label>
 
                                 <div class="col-sm-10">
-                                    <textarea rows="8" class="form-control" id="input-text" ng-model="quote.text"
+                                    <textarea ng-if="!config.formattedInput" rows="8" class="form-control"
+                                              id="input-text" ng-model="quote.text"
                                               autofocus ng-ctrl-enter="save()"
                                               tabindex="3"
                                               placeholder="Quote text"></textarea>
+
+                                    <div ng-if="config.formattedInput" text-angular="text-angular" id="input-text1"
+                                         ng-model="quote.text" tabindex="4" placeholder="Quote text"
+                                         ng-ctrl-enter="save()"></div>
+                                    <input class="margin-15" type="checkbox" ng-model="config.formattedInput"
+                                           tabindex="9"/>
+                                    <span class="margin-15">Formatted input</span>
+
                                 </div>
                             </div>
 
@@ -174,8 +185,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 text-quote">
-                                        {{quotes[$index].text}}
+                                    <div class="col-md-12 text-quote" ng-bind-html="quotes[$index].text|toHTML">
                                     </div>
                                     <div class="col-md-12 text-author text-right">
                                         <cite>
@@ -192,8 +202,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 text-quote">
-                                        {{quotes[$index+1].text}}
+                                    <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
                                     </div>
                                     <div class="col-md-12 text-author text-right">
                                         <cite>

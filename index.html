@@ -14,6 +14,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Quotesform | Follow beautiful words people said</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -70,8 +71,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 text-quote">
-                                        {{quotes[$index].text}}
+                                    <div class="col-md-12 text-quote" ng-bind-html="quotes[$index].text|toHTML">
                                     </div>
                                     <div class="col-md-12 text-author text-right">
                                         <cite>
@@ -88,8 +88,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 text-quote">
-                                        {{quotes[$index+1].text}}
+                                    <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
                                     </div>
                                     <div class="col-md-12 text-author text-right">
                                         <cite>
