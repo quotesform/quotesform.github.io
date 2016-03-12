@@ -59,6 +59,147 @@
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
 
+<style ng-if="true">
+    @import url(http://fonts.googleapis.com/earlyaccess/notosansoriya.css);
+
+    .Oriya {
+        font-family: 'Noto Sans Oriya', sans-serif;
+    }
+</style>
+
+<!-- new-language modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="confirm-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4>Confirm delete quote</h4>
+            </div>
+            <div class="modal-body">
+                Do really want to delete this quote?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="remove(quote)" tabindex="2">Yes! Delete it
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="3">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- new-quote modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="new-quote">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New quote</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Author</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.author" tabindex="1">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.name"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices refresh="refreshAuthors($select.search)"
+                                                           refresh-delay="1000"
+                                                           repeat="item in (authors| orderBy: 'name' | filter: $select.search) track by item._id">
+                                            <span ng-bind="item.name"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" tabindex="2">Language</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.language" tabindex="2">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.text"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="item in (languages | orderBy: 'text'| filter: $select.search) track by item._id">
+                                            <span ng-bind="item.text"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Quote text</label>
+
+                                <div class="col-sm-10">
+                                    <textarea ng-if="!quote.formatted" rows="8" class="form-control"
+                                              id="input-text" ng-model="quote.text"
+                                              autofocus ng-ctrl-enter="save()"
+                                              tabindex="3"
+                                              placeholder="Quote text"></textarea>
+
+                                    <div ng-if="quote.formatted" text-angular="text-angular" id="input-text1"
+                                         ng-model="quote.text" tabindex="4" placeholder="Quote text"
+                                         ng-ctrl-enter="save()"></div>
+                                    <input class="margin-15" type="checkbox" ng-model="quote.formatted"
+                                           tabindex="9"/>
+                                    <span class="margin-15">Formatted input</span>
+
+                                </div>
+                            </div>
+
+                            <!--
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Tags</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.tags" multiple tabindex="5">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.text"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="item in (tags | orderBy:'text' | filter: $select.search) track by item._id">
+                                            <span ng-bind="item.text"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            -->
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> </label>
+
+                                <div ng-if="message" class="col-sm-10"
+                                     ng-class="{'text-danger': error,  'text-muted': !error}">
+                                    <small><em>Last Message : {{message}}</em></small>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="save()" tabindex="10">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="12">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 
 <!-- Begin page content -->
 <div class="container">
@@ -68,10 +209,12 @@
             <div ng-repeat="item in quotes">
                 <div class="row" ng-if="$even">
                     <div class="col-md-6" ng-if="quotes[$index].text">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" ng-mouseenter="hovering=true"
+                             ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-12 text-quote" ng-bind-html="quotes[$index].text|toHTML">
+                                    <div class="col-md-12 text-quote" ng-class="['Oriya']"
+                                         ng-bind-html="quotes[$index].text|toHTML">
                                     </div>
                                     <div class="col-md-12 text-author text-right">
                                         <cite>
@@ -82,10 +225,57 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="panel-footer">
+                                <div class="float-left">
+                                    <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quotes[$index])">
+                                        <span>
+                                            <small>
+                                                {{quotes[$index].like}}
+                                            </small>
+                                        </span>
+                                    </i>
+                                    <i class="fa fa-thumbs-o-down fa-action-icon" ng-click="dislike(quotes[$index])">
+                                        <span>
+                                            <small>
+                                                {{quotes[$index].dislike}}
+                                            </small>
+                                        </span>
+                                    </i>
+                                </div>
+                                <div class="float-right" ng-class="{'display-none':!hovering}"
+                                     ng-if="app.canModifyQuote()">
+                                    <div class="btn-group">
+                                        <i class="fa fa-ellipsis-v fa-action-icon" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false"></span>
+                                        </i>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="" ng-click="edit(quotes[$index])"
+                                                   data-toggle="modal"
+                                                   data-target="#new-quote">
+                                                    <i class="fa fa-pencil-square-o fa-action-icon"> Edit </i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" ng-click="select(quotes[$index])">
+                                                    <i class="fa fa-trash fa-action-icon" data-toggle="modal"
+                                                       data-target="#confirm-delete"> Delete </i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Second column ---------------------------------------------------- -->
+
                     <div class="col-md-6" ng-if="quotes[$index+1].text">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" ng-mouseenter="hovering=true"
+                             ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
@@ -98,6 +288,45 @@
                                         </cite>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="float-left">
+                                    <div class="float-left">
+                                        <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quotes[$index+1])">
+                                            <span><small>
+                                                {{quotes[$index+1].like}}
+                                            </small></span></i>
+                                        <i class="fa fa-thumbs-o-down fa-action-icon"
+                                           ng-click="dislike(quotes[$index+1])">
+                                            <span><small>
+                                                {{quotes[$index+1].dislike}}
+                                            </small></span>
+                                        </i>
+                                    </div>
+                                </div>
+                                <div class="float-right " ng-class="{'display-none':!hovering}"
+                                     ng-if="app.canModifyQuote()">
+                                    <div class="btn-group">
+                                        <i class="fa fa-ellipsis-v fa-action-icon" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false"></span>
+                                        </i>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="" ng-click="edit(quotes[$index+1])" data-toggle="modal"
+                                                   data-target="#new-quote">
+                                                    <i class="fa fa-pencil-square-o fa-action-icon"> Edit </i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" ng-click="select(quotes[$index+1])">
+                                                    <i class="fa fa-trash fa-action-icon" data-toggle="modal"
+                                                       data-target="#confirm-delete"> Delete </i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="clear-both"></div>
                             </div>
                         </div>
                     </div>
@@ -115,15 +344,24 @@
 
         </div>
         <div class="col-md-4 margin-top-15">
-            <div class="list-group">
-                <a href="" class="list-group-item active" ng-click="searchQuotes({})">AUTHORS</a>
-                <a href="" class="list-group-item" ng-click="searchQuotes({author:item._id})"
-                   ng-repeat="item in usedAuthors | orderBy: 'name' ">{{item.name}}</a>
+            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff">
+                <div class="panel-body">
+                    <p>Be a contributor, share you thought to the world</p>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#new-quote"
+                            ng-if="app.isLoggedin()">Write
+                    </button>
+                    <button class="btn btn-default" ng-if="!app.isLoggedin()"
+                            ng-click="app.requestLogin('/')">Login & Write
+                    </button>
+                </div>
             </div>
-            <div class="list-group">
-                <a href="" class="list-group-item active" ng-click="searchQuotes({})">LANGUAGES</a>
-                <a href="" class="list-group-item" ng-click="searchQuotes({language:item._id})"
-                   ng-repeat="item in usedLanguages| orderBy:'text' ">{{item.text}}</a>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <p><a href="/authors.html" target="_self">Authors </a> <span class="text-muted">100+</span></p>
+
+                    <p><a href="/languages.html" target="_self">Languages </a> <span class="text-muted">5+</span></p>
+                </div>
+
             </div>
         </div>
 

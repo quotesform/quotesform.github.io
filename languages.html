@@ -7,7 +7,7 @@
     <link rel="icon" href="/favicon.ico">
     <base href="/">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Tags | Quotesform.com</title>
+    <title>Languages | Quotesform.com</title>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -49,32 +49,41 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="TagController">
+<body ng-app="QuotesFormApp" ng-controller="LanguageController">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
 
-<!-- new-tag modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="new-tag">
+<!-- new-language modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="new-language">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">New tag</h4>
+                <h4 class="modal-title" ng-if="language._id">Update</h4>
+                <h4 class="modal-title" ng-if="!language._id">Create</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Tag</label>
+                                <label class="col-sm-2 control-label">Language</label>
 
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="input-text" ng-model="tag.text" autofocus
+                                    <input class="form-control" id="input-text" ng-model="language.text" autofocus
                                            tabindex="1"
                                            ng-enter="save()"
-                                           placeholder="Tag"/>
+                                           placeholder="Language"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> </label>
+
+                                <div ng-if="message" class="col-sm-10"
+                                     ng-class="{'text-danger': error,  'text-muted': !error}">
+                                    <small><em>Last Message : {{message}}</em></small>
                                 </div>
                             </div>
                         </form>
@@ -99,19 +108,49 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row margin-top-15">
-                <div class="col-md-10">Tags</div>
-                <div class="col-md-2 pull-right text-right" ng-if="app.auth.user.score > 100">
-                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#new-tag">New Tag</a>
-                </div>
+                <div class="col-md-10">Languages</div>
             </div>
             <hr>
-            <div class="row margin-top-15">
-                <div ng-repeat="t in tags | orderBy:'text'" class="col-md-3 tag">{{t.text}}</div>
+            <div class="row margin-top-15 list">
+                <div ng-repeat="item in languages | orderBy:'text'" class="col-md-4 language"
+                     ng-mouseenter="hovering=true"
+                     ng-mouseleave="hovering=false">
+                    <div class="float-left">
+                        {{item.text}}
+                    </div>
+                    <div class="float-right" ng-class="{'display-none':!hovering}"
+                         ng-if="app.canModifyLanguage()">
+                        <a href="" ng-click="edit(item)" title="Edit" data-toggle="modal" data-target="#new-language">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+
+                        <a href="" ng-click="remove(item)" title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </a>
+
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+
+            <div class="row margin-bottom-15">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-default" ng-click="prevPage()" ng-disabled="!hasPrev()">Prev</button>
+                    <button class="btn btn-default margin-left-15" ng-click="nextPage()" ng-disabled="!hasNext()">Next
+                    </button>
+
+                </div>
             </div>
 
         </div>
-        <div class="col-md-4">
-
+        <div class="col-md-4 margin-top-15">
+            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff" ng-if="app.canModifyLanguage()">
+                <div class="panel-body">
+                    <p>Support more languages</p>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#new-language">Add</button>
+                </div>
+            </div>
         </div>
 
     </div>

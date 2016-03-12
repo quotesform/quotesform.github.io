@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/favicon.ico">
     <base href="/">
-    <!-- The above 3 meta authors *must* come first in the head; any other head content must come *after* these authors -->
-    <title>Authors | Quotesform.com</title>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tags | Quotesform.com</title>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
@@ -48,32 +49,41 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="AuthorController">
+<body ng-app="QuotesFormApp" ng-controller="TagController">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
 
-<!-- new-author modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="new-author">
+<!-- new-tag modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="new-tag">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">New author</h4>
+                <h4 class="modal-title" ng-if="tag._id">Update</h4>
+                <h4 class="modal-title" ng-if="!tag._id">Create</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Author</label>
+                                <label class="col-sm-2 control-label">Tag</label>
 
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="input-text" ng-model="author.name" autofocus
+                                    <input class="form-control" id="input-text" ng-model="tag.text" autofocus
                                            tabindex="1"
                                            ng-enter="save()"
-                                           placeholder="Author"/>
+                                           placeholder="Tag"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> </label>
+
+                                <div ng-if="message" class="col-sm-10"
+                                     ng-class="{'text-danger': error,  'text-muted': !error}">
+                                    <small><em>Last Message : {{message}}</em></small>
                                 </div>
                             </div>
                         </form>
@@ -98,14 +108,30 @@
     <div class="row">
         <div class="col-md-8">
             <div class="row margin-top-15">
-                <div class="col-md-10">Authors</div>
-                <div class="col-md-2 pull-right text-right" ng-if="app.auth.user.score > 100">
-                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#new-author">New Author</a>
-                </div>
+                <div class="col-md-10">Tags</div>
             </div>
             <hr>
-            <div class="row margin-top-15">
-                <div  ng-repeat="item in authors | orderBy:'name'" class="col-md-6 author-name">{{item.name}}</div>
+            <div class="row margin-top-15 list">
+                <div ng-repeat="item in tags | orderBy:'text'" class="col-md-4 tag"
+                     ng-mouseenter="hovering=true"
+                     ng-mouseleave="hovering=false">
+                    <div class="float-left">
+                        {{item.text}}
+                    </div>
+                    <div class="float-right" ng-class="{'display-none':!hovering}"
+                         ng-if="app.canModifyTag()">
+                        <a href="" ng-click="edit(item)" title="Edit" data-toggle="modal" data-target="#new-tag">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+
+                        <a href="" ng-click="remove(item)" title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </a>
+
+                    </div>
+
+                    <div class="clear-both"></div>
+                </div>
             </div>
 
             <div class="row margin-bottom-15">
@@ -118,8 +144,13 @@
             </div>
 
         </div>
-        <div class="col-md-4">
-
+        <div class="col-md-4 margin-top-15">
+            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff" ng-if="app.canModifyTag()">
+                <div class="panel-body">
+                    <p>Support more tags</p>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#new-tag">Add</button>
+                </div>
+            </div>
         </div>
 
     </div>
