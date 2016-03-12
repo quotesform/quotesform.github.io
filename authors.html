@@ -110,6 +110,9 @@
                 <div class="col-md-10">Authors</div>
             </div>
             <hr>
+            <div class="row">
+                <div class="col-md-12"><span class="fa-action-icon" ng-repeat="item in atoz" ng-click="refreshAuthors(item)">{{item}}</span></div>
+            </div>
             <div class="row margin-top-15 list">
                 <div ng-repeat="item in authors | orderBy:'text'" class="col-md-4 author"
                      ng-mouseenter="hovering=true"

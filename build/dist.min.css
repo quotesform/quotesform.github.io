@@ -90,7 +90,7 @@ code{font-size:80%}
 .text-author{color:#999}
 .text-quote{color:#555}
 .list>.author:hover,.list>.category:hover,.list>.language:hover,.list>.tag:hover{background:#eee}
-.float-left{float:left}
+.float-left{float:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80%}
 .float-right{float:right}
 .clear-both{clear:both}
 .display-none{display:none}
