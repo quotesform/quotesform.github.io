@@ -80,7 +80,8 @@
                 Do really want to delete this quote?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="remove(quote)" tabindex="2">Yes! Delete it
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="remove(quote)" tabindex="2">
+                    Yes! Delete it
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="3">Close</button>
             </div>
@@ -347,11 +348,11 @@
             <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff">
                 <div class="panel-body">
                     <p>Be a contributor, share you thought to the world</p>
-                    <button class="btn btn-default" data-toggle="modal" data-target="#new-quote"
+                    <button class="btn btn-default" data-toggle="modal" data-target="#new-quote" ng-click="quote={}"
                             ng-if="app.isLoggedin()">Write
                     </button>
                     <button class="btn btn-default" ng-if="!app.isLoggedin()"
-                            ng-click="app.requestLogin('/')">Login & Write
+                            ng-click="quote={}; app.requestLogin('/')">Login & Write
                     </button>
                 </div>
             </div>
