@@ -89,8 +89,9 @@ code{font-size:80%}
 .margin-bottom-15{margin-bottom:15px}
 .text-author{color:#999}
 .text-quote{color:#555}
+.list>.author>.float-left,.list>.category>.float-left,.list>.language>.float-left,.list>.tag>.float-left{padding:15px;max-width:80%}
 .list>.author:hover,.list>.category:hover,.list>.language:hover,.list>.tag:hover{background:#eee}
-.float-left{float:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80%}
+.float-left{float:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .float-right{float:right}
 .clear-both{clear:both}
 .display-none{display:none}
