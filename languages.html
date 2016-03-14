@@ -116,7 +116,9 @@
                      ng-mouseenter="hovering=true"
                      ng-mouseleave="hovering=false">
                     <div class="float-left">
-                        {{item.text}}
+                        <a ng-href="/?languageId={{item._id}}&language={{item.text}}" target="_self">
+                            {{item.text}}
+                        </a>
                     </div>
                     <div class="float-right" ng-class="{'display-none':!hovering}"
                          ng-if="app.canModifyLanguage()">

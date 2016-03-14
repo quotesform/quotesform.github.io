@@ -1,0 +1,108 @@
+<!-- new-quote modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="new-quote">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New quote</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Author</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.author" tabindex="1">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.name"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices refresh="refreshAuthors($select.search)"
+                                                           refresh-delay="1000"
+                                                           repeat="item in (authors| orderBy: 'name' | filter: $select.search) track by item._id">
+                                            <span ng-bind="item.name"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" tabindex="2">Language</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.language" tabindex="2">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.text"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="item in (languages | orderBy: 'text'| filter: $select.search) track by item._id">
+                                            <span ng-bind="item.text"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Quote text</label>
+
+                                <div class="col-sm-10">
+                                    <textarea ng-if="!quote.formatted" rows="8" class="form-control"
+                                              id="input-text" ng-model="quote.text"
+                                              autofocus ng-ctrl-enter="save()"
+                                              tabindex="3"
+                                              placeholder="Quote text"></textarea>
+
+                                    <div ng-if="quote.formatted" text-angular="text-angular" id="input-text1"
+                                         ng-model="quote.text" tabindex="4" placeholder="Quote text"
+                                         ng-ctrl-enter="save()"></div>
+                                    <input class="margin-15" type="checkbox" ng-model="quote.formatted"
+                                           tabindex="9"/>
+                                    <span class="margin-15">Formatted input</span>
+
+                                </div>
+                            </div>
+
+                            <!--
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Tags</label>
+
+                                <div class="col-sm-10">
+                                    <ui-select ng-model="quote.tags" multiple tabindex="5">
+                                        <ui-select-match>
+                                            <span ng-bind="$select.selected.text"></span>
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="item in (tags | orderBy:'text' | filter: $select.search) track by item._id">
+                                            <span ng-bind="item.text"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            -->
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> </label>
+
+                                <div ng-if="message" class="col-sm-10"
+                                     ng-class="{'text-danger': error,  'text-muted': !error}">
+                                    <small><em>Last Message : {{message}}</em></small>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="save()" tabindex="10">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="12">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

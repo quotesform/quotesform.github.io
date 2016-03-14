@@ -118,7 +118,9 @@
                      ng-mouseenter="hovering=true"
                      ng-mouseleave="hovering=false">
                     <div class="float-left">
-                        {{item.name}}
+                        <a ng-href="/?authorId={{item._id}}&author={{item.name}}" target="_self">
+                            {{item.name}}
+                        </a>
                     </div>
                     <div class="float-right" ng-class="{'display-none':!hovering}"
                          ng-if="app.canModifyAuthor(item)">

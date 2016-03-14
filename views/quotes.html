@@ -1,0 +1,127 @@
+<div ng-repeat="item in quotes">
+    <div class="row" ng-if="$even">
+        <div class="col-md-6" ng-if="quotes[$index].text">
+            <div class="panel panel-default" ng-mouseenter="hovering=true"
+                 ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 text-quote" ng-class="['Oriya']"
+                             ng-bind-html="quotes[$index].text|toHTML">
+                        </div>
+                        <div class="col-md-12 text-author text-right">
+                            <cite>
+                                <small>
+                                    ― {{quotes[$index].author.name}}
+                                </small>
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="float-left">
+                        <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quotes[$index])">
+                                        <span>
+                                            <small>
+                                                {{quotes[$index].like}}
+                                            </small>
+                                        </span>
+                        </i>
+                        <i class="fa fa-thumbs-o-down fa-action-icon" ng-click="dislike(quotes[$index])">
+                                        <span>
+                                            <small>
+                                                {{quotes[$index].dislike}}
+                                            </small>
+                                        </span>
+                        </i>
+                    </div>
+                    <div class="float-right" ng-class="{'display-none':!hovering}"
+                         ng-if="app.canModifyQuote(quotes[$index])">
+                        <div class="btn-group">
+                            <i class="fa fa-ellipsis-v fa-action-icon" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false"></span>
+                            </i>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="" ng-click="edit(quotes[$index])"
+                                       data-toggle="modal"
+                                       data-target="#new-quote">
+                                        <i class="fa fa-pencil-square-o fa-action-icon"> Edit </i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="select(quotes[$index])">
+                                        <i class="fa fa-trash fa-action-icon" data-toggle="modal"
+                                           data-target="#confirm-delete"> Delete </i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second column ---------------------------------------------------- -->
+
+        <div class="col-md-6" ng-if="quotes[$index+1].text">
+            <div class="panel panel-default" ng-mouseenter="hovering=true"
+                 ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
+                        </div>
+                        <div class="col-md-12 text-author text-right">
+                            <cite>
+                                <small>
+                                    ― {{quotes[$index+1].author.name}}
+                                </small>
+                            </cite>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="float-left">
+                        <div class="float-left">
+                            <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quotes[$index+1])">
+                                            <span><small>
+                                                {{quotes[$index+1].like}}
+                                            </small></span></i>
+                            <i class="fa fa-thumbs-o-down fa-action-icon"
+                               ng-click="dislike(quotes[$index+1])">
+                                            <span><small>
+                                                {{quotes[$index+1].dislike}}
+                                            </small></span>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="float-right " ng-class="{'display-none':!hovering}"
+                         ng-if="app.canModifyQuote(quotes[$index+1])">
+                        <div class="btn-group">
+                            <i class="fa fa-ellipsis-v fa-action-icon" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false"></span>
+                            </i>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="" ng-click="edit(quotes[$index+1])" data-toggle="modal"
+                                       data-target="#new-quote">
+                                        <i class="fa fa-pencil-square-o fa-action-icon"> Edit </i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="select(quotes[$index+1])">
+                                        <i class="fa fa-trash fa-action-icon" data-toggle="modal"
+                                           data-target="#confirm-delete"> Delete </i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
