@@ -1,6 +1,7 @@
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavigationController">
-    <div class="container-fluid">
+<nav id="custom-bootstrap-menu" class="navbar navbar-default" ng-controller="NavigationController"
+     ng-class="{'navbar-fixed-top': scrollYOffset>=banner.height}">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -10,9 +11,9 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/" target="_self">
-                <img src="/favicon.ico" height="20px">
+                <img src="/favicon-gray-20x20.png">
             </a>
-            <a class="navbar-brand" href="/" target="_self">Quotesform</a>
+            <a class="navbar-brand" href="/" target="_self">Quotes Form</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
