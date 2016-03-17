@@ -22,16 +22,18 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" ng-if="app.auth.user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">{{app.auth.user.name + ' <' + app.auth.user.email + '> '}} <span
+                       aria-expanded="false" title="{{app.auth.user.email}}"><i class="fa fa-user"></i> {{app.auth.user.name}} <span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <!--
                         <li><a href="#" target="_self">User profile</a></li>
                         -->
-                        <li><a href="" ng-click="logout()">Logout</a></li>
+                        <li><a href="" ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
                 </li>
-                <li ng-if="!app.auth.user"><a href="/login.html" target="_self">Login</a></li>
+                <form class="navbar-form navbar-left" ng-if="!app.auth.user">
+                    <a href="/login.html" class="btn btn-default" target="_self"><i class="fa fa-user"></i> Login</a>
+                </form>
             </ul>
         </div>
         <!--/.nav-collapse -->

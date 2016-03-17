@@ -1,4 +1,4 @@
-<div ng-repeat="item in quotes">
+<div ng-if="quotes" ng-repeat="item in quotes">
     <div class="row" ng-if="$even">
         <div class="col-md-6" ng-if="quotes[$index].text">
             <div class="panel panel-default" ng-mouseenter="hovering=true"
@@ -124,4 +124,3 @@
         </div>
     </div>
 </div>
-

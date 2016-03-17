@@ -73,12 +73,13 @@ body>.ui-select-bootstrap.open{z-index:1000}
 .toggle.ng-enter{opacity:0}
 .toggle.ng-enter-active,.toggle.ng-leave{opacity:1}
 .toggle.ng-leave-active{opacity:0}
+.banner-content,.banner>.content-bottom{background-color:rgba(0,0,0,.7);color:#fff}
 .banner{position:relative}
 .banner>.content-center{color:#fff;min-height:100px;min-width:200px;width:50%;margin:0 auto;padding-top:100px}
-.banner>.content-bottom{background-color:rgba(0,0,0,.7);color:#fff;width:100%;min-height:70px;position:absolute;left:0;bottom:0}
+.banner>.content-bottom{width:100%;min-height:70px;position:absolute;left:0;bottom:0;cursor:pointer}
 .banner .title{font-family:Pacifico,cursive;font-size:60px}
 html{position:relative;min-height:100%}
-body{margin-bottom:60px}
+body{margin-bottom:60px;font-size:16px}
 .footer{position:absolute;bottom:0;width:100%;height:60px;background-color:#f5f5f5}
 body>.container{padding:15px 15px 0}
 .container .text-muted{margin:20px 0}
@@ -95,7 +96,7 @@ code{font-size:80%}
 .margin-left-15{margin-left:15px}
 .margin-right-15{margin-right:15px}
 .margin-bottom-15{margin-bottom:15px}
-.text-author{color:#999}
+.text-author{color:#00a}
 .text-quote{color:#555}
 .list>.author>.float-left,.list>.category>.float-left,.list>.language>.float-left,.list>.tag>.float-left{max-width:80%}
 .list>.author:hover,.list>.category:hover,.list>.language:hover,.list>.tag:hover{background:#eee}
@@ -107,5 +108,7 @@ code{font-size:80%}
 .fa-action-icon:hover{color:#555}
 .text-shadow{text-shadow:1px 1px 2px rgba(150,150,150,1)}
 .img-shadow{box-shadow:1px 1px 2px rgba(150,150,150,1)}
+.list>.quote{padding:5px 15px;cursor:pointer}
+.list>.quote:hover{background-color:rgba(150,150,150,.1)}
 .navbar{border-radius:0}
 .navbar .navbar-brand{font-family:Pacifico,cursive}
