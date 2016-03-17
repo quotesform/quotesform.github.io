@@ -69,6 +69,10 @@ body>.ui-select-bootstrap.open{z-index:1000}
 .popover.top>.arrow:after{bottom:1px;margin-left:-10px;content:" ";border-top-color:#fff;border-bottom-width:0}
 .popover.bottom>.arrow{top:-11px;left:50%;margin-left:-11px;border-top-width:0;border-bottom-color:#999;border-bottom-color:rgba(0,0,0,.25)}
 .popover.bottom>.arrow:after{top:1px;margin-left:-10px;content:" ";border-top-width:0;border-bottom-color:#fff}
+.toggle{-webkit-transition:linear 1s;-moz-transition:linear 1s;-ms-transition:linear 1s;-o-transition:linear 1s;transition:linear 1s}
+.toggle.ng-enter{opacity:0}
+.toggle.ng-enter-active,.toggle.ng-leave{opacity:1}
+.toggle.ng-leave-active{opacity:0}
 .banner{position:relative}
 .banner>.content-center{color:#fff;min-height:100px;min-width:200px;width:50%;margin:0 auto;padding-top:100px}
 .banner>.content-bottom{background-color:rgba(0,0,0,.7);color:#fff;width:100%;min-height:70px;position:absolute;left:0;bottom:0}
