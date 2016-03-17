@@ -77,15 +77,14 @@
     <div class="row">
         <div class="col-md-8  margin-top-15">
             <div ng-include="'/views/banner-quotes.html'"></div>
-            <div ng-if="popularQuotes">
-                <h4>Popular quotes</h4>
-                <hr/>
+            <div ng-if="popularQuotes && popularQuotes.length>0">
+                <h4 class="content-title">Popular quotes</h4>
+                <div ng-include="'/views/popular-quotes.html'"></div>
             </div>
-            <div ng-include="'/views/popular-quotes.html'"></div>
 
-            <div ng-if="quotes && quotes.length > 0">
-                <h4>Latest quotes</h4>
-                <hr/>
+
+            <div ng-if="quotes && quotes.length > 0" class="padding-top-15">
+                <h4 class="content-title">Latest quotes</h4>
                 <div ng-include="'/views/quotes.html'"></div>
                 <div ng-include="'/views/pagination.html'"></div>
             </div>
