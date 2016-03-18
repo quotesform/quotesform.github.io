@@ -54,6 +54,13 @@
                                            data-target="#confirm-delete"> Delete </i>
                                     </a>
                                 </li>
+                                <li role="separator" class="divider"></li>
+                                <li ng-if="!quotes[$index].banner">
+                                    <a href="" ng-click="updateBanner(quotes[$index], {banner:1})">Add to banner</a>
+                                </li>
+                                <li ng-if="quotes[$index].banner>=1">
+                                    <a href="" ng-click="updateBanner(quotes[$index], {banner:0})">Remove from banner</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -114,6 +121,13 @@
                                         <i class="fa fa-trash fa-action-icon" data-toggle="modal"
                                            data-target="#confirm-delete"> Delete </i>
                                     </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li ng-if="!quotes[$index+1].banner">
+                                    <a href="" ng-click="updateBanner(quotes[$index+1],{banner:1})">Add to banner</a>
+                                </li>
+                                <li ng-if="quotes[$index+1].banner>=1">
+                                    <a href="" ng-click="updateBanner(quotes[$index+1],{banner:0})">Remove from banner</a>
                                 </li>
                             </ul>
                         </div>

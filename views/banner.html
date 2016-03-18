@@ -8,7 +8,7 @@
     <div class="content-bottom" ng-click="showBannerQuotes(!canShowBannerQuotes)">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 padding-15 text-center">
+                <div class="col-md-12 padding-15" ng-class="{'text-center':!randomQuote.formatted}">
                     <h4  ng-if="randomQuote" class="toggle" ng-bind-html="randomQuote.text + '<cite><small> ― '+randomQuote.author.name+'</small></cite>' | toHTML">
 
                     </h4>
