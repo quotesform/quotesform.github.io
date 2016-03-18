@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="row margin-top-15">
+    <div class="col-md-10 content-title">All Authors</div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-12"><span class="fa-action-icon" ng-repeat="item in atoz" ng-click="refreshAuthors(item)">{{item}}</span>
+    </div>
+</div>
 
-</body>
-</html>
+<div class="row margin-15">
+    <div class="col md-12">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" ng-change="searchAuthors(search)" ng-model="search"
+                           ng-model-options="{ debounce: 250 }"
+                           placeholder="Search author by name">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row margin-top-15 list">
+    <div ng-repeat="item in authors | orderBy:'name'" class="col-md-4 author"
+         ng-mouseenter="hovering=true"
+         ng-mouseleave="hovering=false">
+        <div class="float-left">
+            <a ng-href="/?authorId={{item._id}}&author={{item.name}}" target="_self">
+                {{item.name}}
+            </a>
+        </div>
+        <div class="float-right" ng-class="{'display-none':!hovering}"
+             ng-if="app.canModifyAuthor(item)">
+            <a href="" ng-click="edit(item)" title="Edit" data-toggle="modal" data-target="#new-author">
+                <i class="fa fa-pencil-square-o"></i>
+            </a>
+
+            <a href="" ng-click="remove(item)" title="Delete">
+                <i class="fa fa-trash"></i>
+            </a>
+
+        </div>
+
+        <div class="clear-both"></div>
+    </div>
+</div>

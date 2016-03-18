@@ -1,0 +1,10 @@
+<div class="row margin-top-15">
+    <h4 class="col-md-12 content-title">Popular Authors</h4>
+</div>
+<div class="row list">
+    <div ng-repeat="item in usedAuthors | orderBy:'name'" class="col-md-12 author">
+        <a ng-href="/?authorId={{item._id}}&author={{item.name}}" target="_self">
+            {{item.name}}
+        </a>
+    </div>
+</div>
