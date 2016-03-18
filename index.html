@@ -78,16 +78,16 @@
         <div class="col-md-8  margin-top-15">
             <div ng-include="'/views/banner-quotes.html'"></div>
             <div ng-if="popularQuotes && popularQuotes.length>0">
-                <h4 class="content-title">Popular quotes</h4>
                 <div ng-include="'/views/popular-quotes.html'"></div>
             </div>
 
+            <div ng-include="'/views/popular-languages.html'"></div>
 
             <div ng-if="quotes && quotes.length > 0" class="padding-top-15">
-                <h4 class="content-title">Latest quotes</h4>
                 <div ng-include="'/views/quotes.html'"></div>
                 <div ng-include="'/views/pagination.html'"></div>
             </div>
+
             <div class="row" ng-if="!quotes || quotes.length<=0">
                 <div class="col-md-12 text-center">
                     <h2>Quotes not found! </h2>
@@ -95,6 +95,7 @@
                     <h1>&#9785;</h1>
                 </div>
             </div>
+
         </div>
         <div class="col-md-4 margin-top-15">
 

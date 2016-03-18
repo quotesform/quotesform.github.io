@@ -1,8 +1,8 @@
 <div class="row margin-top-15">
-    <h4 class="col-md-12 content-title">Popular Languages</h4>
+    <h4 class="col-md-12 content-title">All Languages</h4>
 </div>
-<div class="row list">
-    <div ng-repeat="item in usedLanguages | orderBy:'text'" class="col-md-4 language"
+<div class="row margin-top-15 list">
+    <div ng-repeat="item in languages | orderBy:'text'" class="col-md-4 language"
          ng-mouseenter="hovering=true"
          ng-mouseleave="hovering=false">
         <div class="float-left">

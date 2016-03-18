@@ -107,34 +107,8 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="row margin-top-15">
-                <div class="col-md-10">Languages</div>
-            </div>
-            <hr>
-            <div class="row margin-top-15 list">
-                <div ng-repeat="item in languages | orderBy:'text'" class="col-md-4 language"
-                     ng-mouseenter="hovering=true"
-                     ng-mouseleave="hovering=false">
-                    <div class="float-left">
-                        <a ng-href="/?languageId={{item._id}}&language={{item.text}}" target="_self">
-                            {{item.text}}
-                        </a>
-                    </div>
-                    <div class="float-right" ng-class="{'display-none':!hovering}"
-                         ng-if="app.canModifyLanguage()">
-                        <a href="" ng-click="edit(item)" title="Edit" data-toggle="modal" data-target="#new-language">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-
-                        <a href="" ng-click="remove(item)" title="Delete">
-                            <i class="fa fa-trash"></i>
-                        </a>
-
-                    </div>
-
-                    <div class="clear-both"></div>
-                </div>
-            </div>
+            <div ng-include="'/views/popular-languages.html'"></div>
+            <div ng-include="'/views/languages.html'"></div>
 
             <div class="row margin-bottom-15">
                 <div class="col-md-12 text-right">
@@ -147,7 +121,8 @@
 
         </div>
         <div class="col-md-4 margin-top-15">
-            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff" ng-if="app.canModifyLanguage()">
+            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff"
+                 ng-if="app.canModifyLanguage()">
                 <div class="panel-body">
                     <p>Support more languages</p>
                     <button class="btn btn-default" data-toggle="modal" data-target="#new-language">Add</button>
