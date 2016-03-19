@@ -1,6 +1,6 @@
 <!-- Fixed navbar -->
 <nav id="custom-bootstrap-menu" class="navbar navbar-default" ng-controller="NavigationController"
-     ng-class="{'navbar-fixed-top': scrollYOffset>=banner.height}">
+     ng-class="{'navbar-fixed-top': app.canNavbarFixedAtTop(this)}">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"

@@ -9,6 +9,8 @@
     <title>Signup | Quotesform.com</title>
     <link rel="icon" href="/favicon.ico">
 
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- Bootstrap -->
@@ -49,14 +51,14 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="SignupController">
+<body ng-app="QuotesFormApp" ng-controller="SignupController" ng-init="pageName='signup'">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
 
 
 <!-- Begin page content -->
-<div class="container">
+<div class="container" ng-class="{'margin-top-60': app.canNavbarFixedAtTop(this)}">
 
     <div class="row">
         <div class="col-md-8">
