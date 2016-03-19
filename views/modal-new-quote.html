@@ -37,8 +37,9 @@
                                         <ui-select-match>
                                             <span ng-bind="$select.selected.text"></span>
                                         </ui-select-match>
-                                        <ui-select-choices
-                                                repeat="item in (languages | orderBy: 'text'| filter: $select.search) track by item._id">
+                                        <ui-select-choices refresh="refreshLanguages($select.search)"
+                                                           refresh-delay="1000"
+                                                           repeat="item in (languages | orderBy: 'text'| filter: $select.search) track by item._id">
                                             <span ng-bind="item.text"></span>
                                         </ui-select-choices>
                                     </ui-select>
