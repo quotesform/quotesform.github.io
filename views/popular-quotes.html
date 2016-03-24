@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row list">
-    <div ng-repeat="item in popularQuotes | orderBy:'text'" class="col-md-12 quote"
+    <div ng-repeat="item in popularQuotes | orderBy:'text'" class="col-md-12 quote" ng-click="openQuote(item)"
          ng-bind-html="item.text + '<cite><small> ― '+item.author.name+'</small></cite>' | toHTML">
 
     </div>

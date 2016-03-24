@@ -8,7 +8,7 @@
         <div class="col-md-6" ng-if="quotes[$index].text">
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
-                <div class="panel-body">
+                <div class="panel-body" ng-click="openQuote(quotes[$index])" style="cursor: pointer">
                     <div class="row">
                         <div class="col-md-12 text-quote" ng-class="['Oriya']"
                              ng-bind-html="quotes[$index].text|toHTML">
@@ -80,7 +80,7 @@
         <div class="col-md-6" ng-if="quotes[$index+1].text">
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
-                <div class="panel-body">
+                <div class="panel-body" ng-click="openQuote(quotes[$index])" style="cursor: pointer">
                     <div class="row">
                         <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
                         </div>

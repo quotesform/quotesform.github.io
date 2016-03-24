@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Login | Quotesform.com</title>
+    <link rel="icon" href="/favicon.ico">
+
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- My Styles-->
+    <link rel="stylesheet" href="/build/dist.min.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <!-- My Scripts -->
+    <script src="/build/dist.min.js"></script>
+
+</head>
+<body ng-app="QuotesFormApp" ng-controller="HomePageController" ng-init="pageName='quote'">
+<div ng-include="'/views/modal-confirm-delete.html'"></div>
+<div ng-include="'/views/modal-new-quote.html'"></div>
+
+<!-- Fixed navbar -->
+<div ng-include="'/views/navbar.html'"></div>
+
+
+<!-- Begin page content -->
+<div class="container" ng-class="{'margin-top-60': app.canNavbarFixedAtTop(this)}">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{quote.author.name}}</h1>
+
+                    <div class=" margin-top-15 padding-top-15">
+                        <h3 ng-bind-html="quote.text|toHTML"></h3>
+                    </div>
+
+                    <div class="text-right">
+                        <cite>
+                            <small>
+                                ― {{quote.author.name}}
+                            </small>
+                        </cite>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="row padding-15">
+                <div class="col-md-12">
+                    <div class="float-left">
+                        <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quote)">
+                            <span>
+                                <small>
+                                    {{quote.like}}
+                                </small>
+                            </span>
+                        </i>
+                        <i class="fa fa-thumbs-o-down fa-action-icon" ng-click="dislike(quote)">
+                            <span>
+                                <small>
+                                    {{quote.dislike}}
+                                </small>
+                            </span>
+                        </i>
+                    </div>
+                    <div class="float-right"
+                         ng-if="app.canModifyQuote(quote)">
+                        <div class="btn-group">
+                            <i class="fa fa-ellipsis-v fa-action-icon" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false"></span>
+                            </i>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="" ng-click="edit(quote)"
+                                       data-toggle="modal"
+                                       data-target="#new-quote">
+                                        <i class="fa fa-pencil-square-o fa-action-icon"> Edit </i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="select(quote)">
+                                        <i class="fa fa-trash fa-action-icon" data-toggle="modal"
+                                           data-target="#confirm-delete"> Delete </i>
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li ng-if="!quote.banner">
+                                    <a href="" ng-click="updateBanner(quote, {banner:1})">Add to banner</a>
+                                </li>
+                                <li ng-if="quote.banner>=1">
+                                    <a href="" ng-click="updateBanner(quote, {banner:0})">Remove from
+                                        banner</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            </div>
+
+            <hr>
+            <div ng-if="popularQuotes && popularQuotes.length>0">
+                <div ng-include="'/views/popular-quotes.html'"></div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            <div ng-include="'/views/panel-write-quote.html'"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="content-title">Related Topics </h4>
+                </div>
+            </div>
+            <div class="row list">
+                <div class="col-md-12 author">
+                    <a ng-href="/?authorId={{quote.author._id}}&author={{quote.author.name}}" target="_self">
+                        All Quotes by {{quote.author.name}}
+                    </a>
+                </div>
+                <div class="col-md-12 author">
+                    <a ng-href="/?authorId={{quote.author._id}}&author={{quote.author.name}}&languageId={{quote.language._id}}&language={{quote.language.text}}"
+                       target="_self">
+                        All {{quote.language.text}} Quotes by {{quote.author.name}}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+<div ng-include="'/views/footer.html'"></div>
+
+
+</body>
+</html>
