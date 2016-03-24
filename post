@@ -1,4 +1,13 @@
 #!/usr/bin/env node
+// How to use ?
+// Example ./post -u http://localhost:3000/tag -e babuli@gmail.com -p babuli -f ~/Desktop/tags -a http://localhost:3000/login
+// OPtions :
+// -u : Url for POST request
+// -a : Url for Authentication request (login url)
+// -e : Email used for authentication
+// -p : Password used for authentication
+// -f : File path, where data exist in local system
+
 var request = require('request');
 var path = require('path');
 var program = require('commander');

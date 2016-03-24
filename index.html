@@ -101,31 +101,44 @@
 
             <div ng-include="'/views/panel-write-quote.html'"></div>
 
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <p><a href="/authors.html" target="_self">Authors </a> <span class="text-muted">100+</span></p>
-
-                    <p><a href="/languages.html" target="_self">Languages </a> <span class="text-muted">5+</span></p>
+                    <div class="row margin-top-15">
+                        <h4 class="col-md-12 content-title">Relative links</h4>
+                    </div>
+                    <div class="row list">
+                        <div class="col-md-12 author">
+                            <a href="/authors.html" target="_self">Explore by authors </a>
+                        </div>
+                        <div class="col-md-12 author">
+                            <a href="/languages.html" target="_self">Explore by languages</a>
+                        </div>
+                        <div class="col-md-12 author">
+                            <a href="/tags.html" target="_self">Explore by tags</a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
-
 
 <!-- FOOTER -->
 <div ng-include="'/views/footer.html'"></div>
 
 <!-- GoogleAnalytics -->
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-75477693-1', 'auto');
     ga('send', 'pageview');

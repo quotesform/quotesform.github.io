@@ -9,6 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Tags | Quotesform.com</title>
 
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Bootstrap -->
@@ -49,7 +50,7 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="TagController">
+<body ng-app="QuotesFormApp" ng-controller="TagController" ng-init="pageName='tags'">
 
 <!-- Fixed navbar -->
 <div ng-include="'/views/navbar.html'"></div>
@@ -103,36 +104,12 @@
 
 
 <!-- Begin page content -->
-<div class="container">
+<div class="container" ng-class="{'margin-top-60': app.canNavbarFixedAtTop(this)}">
 
     <div class="row">
         <div class="col-md-8">
-            <div class="row margin-top-15">
-                <div class="col-md-10">Tags</div>
-            </div>
-            <hr>
-            <div class="row margin-top-15 list">
-                <div ng-repeat="item in tags | orderBy:'text'" class="col-md-4 tag"
-                     ng-mouseenter="hovering=true"
-                     ng-mouseleave="hovering=false">
-                    <div class="float-left">
-                        {{item.text}}
-                    </div>
-                    <div class="float-right" ng-class="{'display-none':!hovering}"
-                         ng-if="app.canModifyTag()">
-                        <a href="" ng-click="edit(item)" title="Edit" data-toggle="modal" data-target="#new-tag">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-
-                        <a href="" ng-click="remove(item)" title="Delete">
-                            <i class="fa fa-trash"></i>
-                        </a>
-
-                    </div>
-
-                    <div class="clear-both"></div>
-                </div>
-            </div>
+            <div ng-include="'/views/popular-tags.html'"></div>
+            <div ng-include="'/views/tags.html'"></div>
 
             <div class="row margin-bottom-15">
                 <div class="col-md-12 text-right">
@@ -145,7 +122,8 @@
 
         </div>
         <div class="col-md-4 margin-top-15">
-            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff" ng-if="app.canModifyTag()">
+            <div class="panel panel-primary" style="background-color: #007FBB; color: #ffffff"
+                 ng-if="app.canModifyTag()">
                 <div class="panel-body">
                     <p>Support more tags</p>
                     <button class="btn btn-default" data-toggle="modal" data-target="#new-tag">Add</button>
