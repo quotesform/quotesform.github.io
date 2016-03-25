@@ -92,13 +92,25 @@
                                     <small><em>Last Message : {{message}}</em></small>
                                 </div>
                             </div>
+
+
                         </form>
 
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" ng-click="save()" tabindex="10">Save</button>
+                <div class="text-left" style="display: inline;">
+                    <a href="" class="padding-5" data-toggle="modal" data-target="#new-author"
+                       style=" text-decoration: none;">
+                        <small>Add new author</small>
+                    </a>
+                    <a href="" class="padding-5" data-toggle="modal" data-target="#new-tag"
+                       style=" text-decoration: none;">
+                        <small>Add new tag</small>
+                    </a>
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="saveQuote()" tabindex="10">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="12">Close</button>
             </div>
         </div>

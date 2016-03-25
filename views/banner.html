@@ -1,15 +1,20 @@
 <div class="container-fluid banner"
      ng-style="{height: banner.height+'px','background-image': 'url('+banner.url+')', 'background-size':'cover', 'background-position':'center'}">
     <div class="content-center text-center">
-        <img class="img-circle img-shadow" src="/favicon-white-128x128.png"/>
+        <a href="/" target="_self">
+            <img class="img-circle img-shadow" src="/favicon-white-128x128.png"/>
+        </a>
 
-        <div class="title text-shadow">Quotes Form</div>
+        <a href="/" target="_self" style="color: #FFFFFF; text-decoration: none;">
+            <div class="title text-shadow">Quotes Form</div>
+        </a>
     </div>
     <div class="content-bottom" ng-click="showBannerQuotes(!canShowBannerQuotes)">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 padding-15" ng-class="{'text-center':!randomQuote.formatted}">
-                    <h4  ng-if="randomQuote" class="toggle" ng-bind-html="randomQuote.text + '<cite><small> ― '+randomQuote.author.name+'</small></cite>' | toHTML">
+                    <h4 ng-if="randomQuote" class="toggle"
+                        ng-bind-html="randomQuote.text + '<cite><small> ― '+randomQuote.author.name+'</small></cite>' | toHTML">
 
                     </h4>
                 </div>
