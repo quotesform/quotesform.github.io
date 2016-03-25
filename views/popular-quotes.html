@@ -5,9 +5,8 @@
 </div>
 <div class="row list">
     <a ng-href="/quote.html?quoteId={{item._id}}" target="_self" ng-repeat="item in popularQuotes | orderBy:'text'"
-       class="col-md-12 quote"
+       class="col-md-12 quote" style="display:block;"
        ng-bind-html="item.text + '<cite><small> ― '+item.author.name+'</small></cite>' | toHTML">
     </a>
-
 
 </div>

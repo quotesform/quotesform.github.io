@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="row padding-15 list">
             <a ng-href="/quote.html?quoteId={{item._id}}" target="_self" ng-repeat="item in bannerQuotes"
-               class="col-md-12 quote" ng-click="openQuote(item)" style="color: #FFFFFF"
+               class="col-md-12 quote" ng-click="openQuote(item)" style="color: #FFFFFF;display:block;"
                ng-bind-html=" item.text + '<cite><small> ― '+item.author.name+'</small></cite> ' | toHTML">
             </a>
         </div>
