@@ -8,20 +8,24 @@
         <div class="col-md-6" ng-if="quotes[$index].text">
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
-                <div class="panel-body" ng-click="openQuote(quotes[$index])" style="cursor: pointer">
-                    <div class="row">
-                        <div class="col-md-12 text-quote" ng-class="['Oriya']"
-                             ng-bind-html="quotes[$index].text|toHTML">
-                        </div>
-                        <div class="col-md-12 text-author text-right">
-                            <cite>
-                                <small>
-                                    ― {{quotes[$index].author.name}}
-                                </small>
-                            </cite>
+
+                <a ng-href="/quote.html?quoteId={{quotes[$index]._id}}" target="_self">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 text-quote" ng-class="['Oriya']"
+                                 ng-bind-html="quotes[$index].text|toHTML">
+                            </div>
+                            <div class="col-md-12 text-author text-right">
+                                <cite>
+                                    <small>
+                                        ― {{quotes[$index].author.name}}
+                                    </small>
+                                </cite>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+
                 <div class="panel-footer">
                     <div class="float-left">
                         <i class="fa fa-thumbs-o-up fa-action-icon" ng-click="like(quotes[$index])">
@@ -64,7 +68,8 @@
                                     <a href="" ng-click="updateBanner(quotes[$index], {banner:1})">Add to banner</a>
                                 </li>
                                 <li ng-if="quotes[$index].banner>=1">
-                                    <a href="" ng-click="updateBanner(quotes[$index], {banner:0})">Remove from banner</a>
+                                    <a href="" ng-click="updateBanner(quotes[$index], {banner:0})">Remove from
+                                        banner</a>
                                 </li>
                             </ul>
                         </div>
@@ -80,19 +85,23 @@
         <div class="col-md-6" ng-if="quotes[$index+1].text">
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
-                <div class="panel-body" ng-click="openQuote(quotes[$index])" style="cursor: pointer">
-                    <div class="row">
-                        <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
-                        </div>
-                        <div class="col-md-12 text-author text-right">
-                            <cite>
-                                <small>
-                                    ― {{quotes[$index+1].author.name}}
-                                </small>
-                            </cite>
+
+                <a ng-href="/quote.html?quoteId={{quotes[$index+1]._id}}" target="_self">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
+                            </div>
+                            <div class="col-md-12 text-author text-right">
+                                <cite>
+                                    <small>
+                                        ― {{quotes[$index+1].author.name}}
+                                    </small>
+                                </cite>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+
                 <div class="panel-footer">
                     <div class="float-left">
                         <div class="float-left">
@@ -132,7 +141,8 @@
                                     <a href="" ng-click="updateBanner(quotes[$index+1],{banner:1})">Add to banner</a>
                                 </li>
                                 <li ng-if="quotes[$index+1].banner>=1">
-                                    <a href="" ng-click="updateBanner(quotes[$index+1],{banner:0})">Remove from banner</a>
+                                    <a href="" ng-click="updateBanner(quotes[$index+1],{banner:0})">Remove from
+                                        banner</a>
                                 </li>
                             </ul>
                         </div>

@@ -1,11 +1,10 @@
-<div class="row banner-content margin-bottom-15 toggle" ng-if="canShowBannerQuotes" >
+<div class="row banner-content margin-bottom-15 toggle" ng-if="canShowBannerQuotes">
     <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-12 padding-15 list">
-                    <p ng-repeat="item in bannerQuotes" class="quote" ng-click="openQuote(item)"
-                       ng-bind-html=" item.text + '<cite><small> ― '+item.author.name+'</small></cite> ' | toHTML">
-                </p>
-            </div>
+        <div class="row padding-15 list">
+            <a ng-href="/quote.html?quoteId={{item._id}}" target="_self" ng-repeat="item in bannerQuotes"
+               class="col-md-12 quote" ng-click="openQuote(item)" style="color: #FFFFFF"
+               ng-bind-html=" item.text + '<cite><small> ― '+item.author.name+'</small></cite> ' | toHTML">
+            </a>
         </div>
         <div class="row">
             <div class="col-md-12 text-right padding-15">
