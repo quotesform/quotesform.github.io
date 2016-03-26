@@ -89,7 +89,7 @@
                 <div ng-include="'/views/pagination.html'"></div>
             </div>
 
-            <div class="row" ng-if="!quotes || quotes.length<=0">
+            <div class="row" ng-if="loaded && (!quotes || quotes.length<=0)">
                 <div class="col-md-12 text-center">
                     <h2>Quotes not found! </h2>
 
