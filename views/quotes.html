@@ -9,7 +9,7 @@
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
 
-                <a ng-href="/quote.html?quoteId={{quotes[$index]._id}}" target="_self">
+                <a ng-href="/quote.html?quoteId={{quotes[$index]._id}}&languageId={{quotes[$index].language._id}}&language={{quotes[$index].language.text}}" target="_self">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12 text-quote" ng-class="['Oriya']"
@@ -86,7 +86,7 @@
             <div class="panel panel-default" ng-mouseenter="hovering=true"
                  ng-mouseleave="hovering=false" ng-class="{'panel-primary':hovering}">
 
-                <a ng-href="/quote.html?quoteId={{quotes[$index+1]._id}}" target="_self">
+                <a ng-href="/quote.html?quoteId={{quotes[$index+1]._id}}&languageId={{quotes[$index+1].language._id}}&language={{quotes[$index+1].language.text}}" target="_self">
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12 text-quote" ng-bind-html="quotes[$index+1].text|toHTML">
