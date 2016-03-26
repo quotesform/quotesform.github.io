@@ -52,81 +52,87 @@
     <script src="/build/dist.min.js"></script>
 
 </head>
-<body ng-app="QuotesFormApp" ng-controller="HomePageController" scroll ng-init="pageName='index'">
+<body ng-app="QuotesFormApp" ng-controller="HomePageController" scroll ng-init="pageName='index'" class="base-body"
+      ng-class="{'empty-body':!loaded}">
+
+<!--View Container Start-->
+<div ng-show="loaded" class="animate-show">
+
+    <style ng-if="true">
+        @import url(http://fonts.googleapis.com/earlyaccess/notosansoriya.css);
+
+        .Oriya {
+            font-family: 'Noto Sans Oriya', sans-serif;
+        }
+    </style>
+
+    <div ng-include="'/views/modal-confirm-delete.html'"></div>
+    <div ng-include="'/views/modal-new-quote.html'"></div>
+    <div ng-include="'/views/modal-new-author.html'"></div>
+    <div ng-include="'/views/modal-new-tag.html'"></div>
+    <div ng-include="'/views/banner.html'"></div>
+
+    <!-- Fixed navbar -->
+    <div ng-include="'/views/navbar.html'"></div>
 
 
-<style ng-if="true">
-    @import url(http://fonts.googleapis.com/earlyaccess/notosansoriya.css);
-
-    .Oriya {
-        font-family: 'Noto Sans Oriya', sans-serif;
-    }
-</style>
-
-<div ng-include="'/views/modal-confirm-delete.html'"></div>
-<div ng-include="'/views/modal-new-quote.html'"></div>
-<div ng-include="'/views/modal-new-author.html'"></div>
-<div ng-include="'/views/modal-new-tag.html'"></div>
-<div ng-include="'/views/banner.html'"></div>
-
-<!-- Fixed navbar -->
-<div ng-include="'/views/navbar.html'"></div>
-
-</div>
-<!-- Begin page content -->
-<div class="container" ng-class="{'margin-top-60': app.canNavbarFixedAtTop(this)}">
-    <div class="row">
-        <div class="col-md-8  margin-top-15">
-            <div ng-include="'/views/banner-quotes.html'"></div>
-            <div ng-if="popularQuotes && popularQuotes.length>0">
-                <div ng-include="'/views/popular-quotes.html'"></div>
-            </div>
-
-            <div ng-include="'/views/popular-languages.html'"></div>
-
-            <div ng-if="quotes && quotes.length > 0" class="padding-top-15">
-                <div ng-include="'/views/quotes.html'"></div>
-                <div ng-include="'/views/pagination.html'"></div>
-            </div>
-
-            <div class="row" ng-if="loaded && (!quotes || quotes.length<=0)">
-                <div class="col-md-12 text-center">
-                    <h2>Quotes not found! </h2>
-
-                    <h1>&#9785;</h1>
+    <!-- Begin page content -->
+    <div class="container" ng-class="{'margin-top-60': app.canNavbarFixedAtTop(this)}">
+        <div class="row">
+            <div class="col-md-8  margin-top-15">
+                <div ng-include="'/views/banner-quotes.html'"></div>
+                <div ng-if="popularQuotes && popularQuotes.length>0">
+                    <div ng-include="'/views/popular-quotes.html'"></div>
                 </div>
+
+                <div ng-include="'/views/popular-languages.html'"></div>
+
+                <div ng-if="quotes && quotes.length > 0" class="padding-top-15">
+                    <div ng-include="'/views/quotes.html'"></div>
+                    <div ng-include="'/views/pagination.html'"></div>
+                </div>
+
+                <div class="row" ng-if="loaded && (!quotes || quotes.length<=0)">
+                    <div class="col-md-12 text-center">
+                        <h2>Quotes not found! </h2>
+
+                        <h1>&#9785;</h1>
+                    </div>
+                </div>
+
             </div>
+            <div class="col-md-4 margin-top-15">
 
-        </div>
-        <div class="col-md-4 margin-top-15">
+                <div ng-include="'/views/panel-write-quote.html'"></div>
 
-            <div ng-include="'/views/panel-write-quote.html'"></div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row margin-top-15">
+                            <h4 class="col-md-12 content-title">Explore more</h4>
+                        </div>
+                        <div class="row list">
+                            <div class="col-md-12 author">
+                                <a href="/authors.html" target="_self">Explore by authors </a>
+                            </div>
+                            <div class="col-md-12 author">
+                                <a href="/languages.html" target="_self">Explore by languages</a>
+                            </div>
+                            <div class="col-md-12 author">
+                                <a href="/tags.html" target="_self">Explore by tags</a>
+                            </div>
+                        </div>
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row margin-top-15">
-                        <h4 class="col-md-12 content-title">Explore more</h4>
                     </div>
-                    <div class="row list">
-                        <div class="col-md-12 author">
-                            <a href="/authors.html" target="_self">Explore by authors </a>
-                        </div>
-                        <div class="col-md-12 author">
-                            <a href="/languages.html" target="_self">Explore by languages</a>
-                        </div>
-                        <div class="col-md-12 author">
-                            <a href="/tags.html" target="_self">Explore by tags</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- FOOTER -->
-<div ng-include="'/views/footer.html'"></div>
+    <!-- FOOTER -->
+    <div ng-include="'/views/footer.html'"></div>
+
+</div>
+<!--View Container end-->
 
 <!-- GoogleAnalytics -->
 <script>
