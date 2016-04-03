@@ -17,6 +17,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/paramananda/quotesform#readme",
   "dependencies": {
+    "angular-bootstrap-colorpicker": "^3.0.25",
     "commander": "^2.9.0",
     "del": "^2.2.0",
     "fs": "0.0.2",

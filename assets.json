@@ -1,12 +1,9 @@
 {
   "css": [
-    "bower_components/ui-select/dist/select.min.css",
-    "bower_components/textAngular/dist/textAngular.css"
+    "bower_components/ui-select/dist/select.min.css"
   ],
   "js": [
     "bower_components/ui-select/dist/select.min.js",
-    "bower_components/textAngular/dist/textAngular.min.js",
-    "bower_components/textAngular/dist/textAngular-rangy.min.js",
-    "bower_components/textAngular/dist/textAngular-sanitize.min.js"
+    "bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"
   ]
 }

@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Compose image</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <style type="text/css">
+        #target {
+            background: #ffffff no-repeat center;
+            position: relative;
+            color: #000;
+            text-shadow: 2px 2px 2px #777;
+        }
+
+        #child {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            cursor: move;
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+
+        button {
+            display: block;
+            height: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="target">
+    <canvas id="myCanvas"></canvas>
+    <div class="child" id="child">
+
+        Hello this the latest variable in the container, It sound messy
+
+    </div>
+</div>
+
+<button onclick="takeScreenShot()">to image</button>
+
+<button onclick="downloadScreenShot()">Download Image</button>
+
+
+<script type="text/javascript">
+
+    var target = $("#target");
+    var child = $("#child");
+    var myCanvas = document.getElementById('myCanvas');
+    var ctx = myCanvas.getContext('2d');
+    var myimage = new Image();
+    myimage.onload = function () {
+        document.getElementById("target").style.width = myCanvas.width =  myimage.width
+        document.getElementById("target").style.height=  myCanvas.height =   myimage.height;
+
+        child.draggable({containment: '#target'});
+        child.resizable({containment: "#target"});
+
+        ctx.drawImage(myimage, 0, 0);
+        console.log(target);
+
+    }
+    myimage.crossOrigin = true;
+    myimage.src = 'http://web.quotesform.com/banners/1.jpg';
+
+
+    window.takeScreenShot = function () {
+        html2canvas(document.getElementById("target"), {
+            allowTaint: false,
+            logging: true,
+            userCORS: true,
+            onrendered: function (canvas) {
+                document.body.appendChild(canvas);
+            },
+        });
+    }
+
+    window.downloadScreenShot = function () {
+        html2canvas(document.getElementById("target"), {
+            allowTaint: false,
+            logging: true,
+            onrendered: function (canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'Image.png';
+                document.body.appendChild(link);
+                link.click();
+            }
+        });
+
+    }
+
+</script>
+</body>
+
+</html>

@@ -20,6 +20,8 @@
   ],
   "dependencies": {
     "ui-select": "angular-ui-select#~0.14.9",
-    "textAngular": "~1.4.6"
+    "textAngular": "~1.4.6",
+    "angular-bootstrap-colorpicker": "^3.0.25",
+    "ngInfiniteScroll": "^1.2.2"
   }
 }

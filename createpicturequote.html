@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <base href="/">
+    <title>Create picture quotes online free - QuotesForm.com</title>
+    <meta name="description"
+          content="Create Picture Quotes in QuotesForm.com, Find different language of quotes on QuotesForm and share with your friends on Facebook, twitter, google+, whatsapp, hike ...">
+    <meta name="keyword"
+          content="Picture Quotes, Popular quotes, quotes, share quotes, different language quotes">
+
+    <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- My Styles-->
+    <link rel="stylesheet" href="/build/dist.min.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+
+    <!-- My Scripts -->
+    <script src="/build/dist.min.js"></script>
+
+
+    <style type="text/css">
+        .composer {
+            display: inline-block;
+            position: relative;
+            height: 340px;
+        }
+
+        .extra {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            cursor: move;
+            font-size: 32px;
+            color: #FFFFFF;
+            text-shadow: 2px 0px 10px #000;
+        }
+
+        .quote {
+            position: absolute;
+            left: 50px;
+            top: 100px;
+            cursor: move;
+            font-size: 16px;
+            color: #FFFFFF;
+            text-shadow: 2px 0px 10px #000;
+        }
+
+        .author {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            cursor: move;
+            color: #FFFFFF;
+            text-shadow: 2px 0px 10px #000;
+        }
+
+        .quotesform-brand {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #FFFFFF;
+            opacity: .6;
+            font-family: 'Pacifico', cursive;
+            font-size: 16px;
+            text-shadow: 2px 0px 10px #000;
+        }
+
+    </style>
+
+</head>
+<body ng-app="QuotesFormApp" ng-controller="CreatePictureQuoteController" ng-init="pageName='createpicturequote'">
+
+<!-- Fixed navbar -->
+<div ng-include="'/views/navbar.html'"></div>
+<div class="row" style="background-color: #777">
+    <div class="col-md-12">
+        <div class="container margin-top-60 padding-top-15">
+           <!-- <h2 style="color: #FFFFFF" class="text-center"><u>Picture Quote Preview</u></h2>-->
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-12  text-center">
+                            <div class="composer" id="composer">
+                                <canvas id="myCanvasBackground"></canvas>
+
+                                <div class="quote" id="quote" ng-bind-html="quote.text|toHTML"></div>
+                                <div class="extra" id="extra" ng-bind-html="quote.extra|toHTML"></div>
+                                <div class="author" id="author">
+                                    <cite>
+                                        <small ng-bind="quote.author.name"></small>
+                                    </cite>
+                                </div>
+                                <div class="quotesform-brand">
+                                    <!--<img style="margin-bottom: 15px"
+                                         src="/favicon-white-20x20.png"
+                                         style="box-shadow: 2px 2px 2px #777;">-->
+                                    <span>QuotesForm.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row margin-15">
+                        <div class="col-md-12 text-center">
+                            <spectrum-colorpicker title="Change background color"
+                                                  ng-model="backgroundColor"
+                                                  on-change="changeBackgroundColor(color)"
+                                                  options="{showInput: true, showAlpha: true,  allowEmpty:true, showInitial: true, showInput: true,  showPalette: true, palette: [ ],  preferredFormat: 'hex',   showSelectionPalette: true,maxSelectionSize: 4}">
+
+                            </spectrum-colorpicker>
+
+
+                            <button class="btn btn-default" ng-click="showBackgroundImage=!showBackgroundImage">
+                                Change background image
+                            </button>
+                            <button class="btn btn-default" ng-click="refreshComposer()">Refresh</button>
+                            <button class="btn btn-default" ng-click="downloadImage()">
+                                <i class="fa fa-download"></i>
+                                Download Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row margin-15" ng-if="showBackgroundImage">
+                        <div class="col-md-12">
+                            <div style="height: 500px; overflow-y: scroll; overflow-x: hidden">
+                                <img ng-src="{{getImagePath(item)}}" ng-repeat="item in images"
+                                     style="margin:5px ; height: 150px" ng-click="changeBackgroundImage(item)"/>
+
+                                <div class="row  margin-top-60 margin-bottom-60">
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-default" ng-show="hasNext();"
+                                                ng-click="nextPage()">Load more
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Author name</label>
+
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="input-author-name"
+                               ng-model="quote.author.name" tabindex="4" placeholder="Author name"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Quote text</label>
+
+                    <div class="col-sm-10">
+                        <div text-angular="text-angular" id="input-text1"
+                             ng-model="quote.text" tabindex="4" placeholder="Quote text"></div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Extra text</label>
+
+                    <div class="col-sm-10">
+                        <div text-angular="text-angular" id="input-extra-text"
+                             ng-model="quote.extra" tabindex="4" placeholder="Extra text"></div>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <div class="margin-bottom-60"></div>
+</div>
+
+
+<!-- FOOTER -->
+<div ng-include="'/views/footer.html'"></div>
+
+
+</body>
+</html>

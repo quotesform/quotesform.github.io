@@ -26,7 +26,7 @@ gulp.task('uglify', function () {
     var src = assets.js;
 
     if (src) {
-        src.push('angular/**/*.js');
+        src.push('angular/quotes/**/*.js');
         return gulp.src(src)
             .pipe(plugins.concat('dist.min.js'))
             .pipe(plugins.uglify({mangle: false}))
