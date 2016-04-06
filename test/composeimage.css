@@ -1,0 +1,104 @@
+canvas {
+    border: 1px solid gray;
+}
+
+.composer {
+    position: relative;
+    overflow: hidden;
+    width: 600px;
+    height: 400px;
+    display: block;
+}
+
+.options, .editor {
+    width: 600px;
+    display: inline-block;
+}
+
+.text {
+    position: absolute;
+    left: 50px;
+    top: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 3px 3px 8px #000;
+    cursor: move;
+    padding: 5px;
+    margin: 5px;
+}
+
+.ui-resizable-helper {
+    border: 1px dotted gray;
+}
+
+.text-active {
+    border: dashed 1px #007FBB;
+
+}
+
+.font {
+    padding: 3px;
+    margin: 2px;
+    border: 1px solid #dddddd;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.font:hover {
+    background-color: #dddddd;
+}
+
+.margin-20 {
+    margin: 20px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.padding-top-5 {
+    padding-top: 5px;
+}
+
+.action-icon {
+    min-width: 36px;
+    padding: 10px;
+    border: solid 1px #777777;
+}
+
+.action-icon:hover, .action-icon-active {
+    background: #777777;
+    color: #ffffff;
+}
+
+.toggle {
+    -webkit-transition: linear 2s;
+    -moz-transition: linear 2s;
+    -ms-transition: linear 2s;
+    -o-transition: linear 2s;
+    transition: linear 2s;
+}
+
+.toggle.ng-enter {
+    opacity: 0;
+}
+
+.toggle.ng-enter-active {
+    opacity: 1;
+}
+
+.toggle.ng-leave {
+    opacity: 1;
+}
+
+.toggle.ng-leave-active {
+    opacity: 0;
+}

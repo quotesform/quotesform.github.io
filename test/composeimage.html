@@ -1,0 +1,321 @@
+<html>
+<head><title>Create Image</title></head>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<link rel="stylesheet" href="/test/composeimage.css"/>
+<script src="/test/composeimage.js"></script>
+<script src="/test/angularspectrumcolorpicker.js"></script>
+
+<body ng-app="ComposeImageApp" ng-controller="AppController">
+<div class="container ">
+    <div class="row margin-20">
+        <div class="col-md-12 text-center">
+            <div class="editor">
+
+                <!--Composer-->
+                <div class="row">
+                    <div class="col-md-12  text-center">
+                        <div id="composer">
+                            <canvas id="mycanvas" width="600" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--options-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="options">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active">
+                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+                                </li>
+
+                                <li role="presentation" class="dropdown">
+                                    <a href="" id="background" class="dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       aria-controls="background-contents"
+                                       aria-expanded="false">Background <span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu" aria-labelledby="background" id="background-contents">
+                                        <li><a href="#backgroundimage" role="tab" id="backgroundadimage-tab"
+                                               data-toggle="tab"
+                                               aria-controls="backgroundimage">Image</a></li>
+
+                                        <li><a href="#backgroundcolor" role="tab" id="backgroundadcolor-tab"
+                                               data-toggle="tab"
+                                               aria-controls="backgroundcolor">Color</a></li>
+
+                                        <li><a href="#backgroundadjustment" role="tab" id="backgroundadjustment-tab"
+                                               data-toggle="tab"
+                                               aria-controls="backgroundadjustment">Adjustment</a></li>
+
+                                    </ul>
+                                </li>
+
+
+                                <li role="presentation" class="dropdown">
+                                    <a href="" id="text" class="dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       aria-controls="text-contents"
+                                       aria-expanded="false">Text <span
+                                            class="caret"></span></a>
+                                    <ul class="dropdown-menu" aria-labelledby="background" id="text-contents">
+                                        <li><a href="#textadd" role="tab" id="textadd-tab"
+                                               data-toggle="tab"
+                                               aria-controls="textadd">Add text</a></li>
+                                        <li><a href="#textfont" role="tab" id="textfont-tab"
+                                               data-toggle="tab"
+                                               aria-controls="textfont">Font</a></li>
+
+                                        <li><a href="#textadjustment" role="tab" id="textadjust-tab"
+                                               data-toggle="tab" ng-click="resetTextSliders()"
+                                               aria-controls="textadjustment">Adjustment</a></li>
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <div class="row">
+                                        <div class="col-md-12 margin-20">
+                                            <button class="btn btn-default" ng-click="downloadImage()">
+                                                <i class="fa fa-download" style="padding-right: 5px"></i>
+                                                <span>Download image</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div role="tabpanel" class="tab-pane" id="textadd">
+                                    <div class="row">
+                                        <div class="col-md-12 margin-20  text-left">
+                                        <textarea ng-model="newText" placeholder="Add your text here" rows="3" cols="80"
+                                                  style="max-width: 560px"></textarea>
+
+                                            <div class="row">
+                                                <div class="col-md-12 text-left">
+                                                    <button class="btn btn-default margin-top-20"
+                                                            ng-click="applyText(newText)">Apply
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="textselect">select</div>
+                                <div role="tabpanel" class="tab-pane" id="textfont">
+                                    <div class="row">
+                                        <div class="col-md-12 margin-20">
+                                            Size <input type="number" min="8" max="96" ng-init="fontSize=18"
+                                                        ng-model="fontSize" ng-change="changeFontSize(fontSize)"/>
+                                            Color
+                                            <spectrum-colorpicker title="Color"
+                                                                  ng-model="fontColor"
+                                                                  on-change="changeTextColor(color)"
+                                                                  options="{showInput: true, showAlpha: true,  allowEmpty:true, showInitial: true, showInput: true,  showPalette: true, palette: [ ],  preferredFormat: 'hex',   showSelectionPalette: true,maxSelectionSize: 4}">
+
+                                            </spectrum-colorpicker>
+
+                                            <input type="checkbox" ng-model="isBold" ng-init="isBold=false"
+                                                   ng-change="changeFontWeight(isBold?'bold':'normal')"/> Bold
+                                            <input type="checkbox" ng-model="isItalic" ng-init="isItalic=false"
+                                                   ng-change="changeFontStyle(isItalic?'italic':'normal')"/> Italic
+                                            <input type="checkbox" ng-model="isUnderline" ng-init="isUnderline=false"
+                                                   ng-change="changeTextDecoration(isUnderline?'underline':'none')"/>
+                                            Underline
+                                            <input type="checkbox" ng-model="isCapCase" ng-init="isCapCase=false"
+                                                   ng-change="changeTextTransform(isCapCase?'uppercase':'none')"/> CAPS
+
+                                            <!--Fonts-->
+                                            <hr/>
+                                            <div class="font" ng-click="changeFont('Arial')"
+                                                 style="font-family: 'Arial">Arial
+                                            </div>
+                                            <div class="font" ng-click="changeFont('Arial Black')"
+                                                 style="font-family: 'Arial Black">Arial Black
+                                            </div>
+                                            <div class="font" ng-click="changeFont('Comic Sans MS')"
+                                                 style="font-family: 'Comic Sans MS">Comic Sans MS
+                                            </div>
+                                            <div class="font" ng-click="changeFont('Impact')"
+                                                 style="font-family: 'Impact">Impact
+                                            </div>
+                                            <div class="font" ng-click="changeFont('Times New Roman')"
+                                                 style="font-family: 'Times New Roman">Times New Roman
+                                            </div>
+                                            <div class="font" ng-click="changeFont('Verdana')"
+                                                 style="font-family: 'Verdana">Verdana
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="textadjustment">
+                                    <div class="row padding-top-5">
+                                        <div class="col-md-12">
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="X axis" id="textsliderx"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="Y axis" id="textslidery"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row padding-top-5">
+                                        <div class="col-md-12">
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="Width" id="textsliderwidth"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="Height" id="textsliderheight"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row padding-top-5">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-default" ng-click="resetTextSliders()">Refresh
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div role="tabpanel" class="tab-pane" id="backgroundadjustment">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <i class="fa fa-arrows action-icon" ng-click="background.fill()"
+                                                       ng-class="{'action-icon-active':background.isFill}"></i>
+                                                    <i class="fa fa-arrows-h action-icon" ng-click="background.fillX()"
+                                                       ng-class="{'action-icon-active':background.isFillX}"></i>
+                                                    <i class="fa fa-arrows-v action-icon" ng-click="background.fillY()"
+                                                       ng-class="{'action-icon-active':background.isFillY}"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="Adjust background in X axis" id="sliderx"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row margin-20">
+                                                <div class="col-md-12">
+                                                    <div title="Adjust background in Y axis" id="slidery"
+                                                         class="padding-5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div role="tabpanel" class="tab-pane" id="backgroundcolor">
+                                    <div class="row">
+                                        <div class="col-md-12 margin-20">
+                                            <spectrum-colorpicker title="Change background color"
+                                                                  ng-model="backgroundColor"
+                                                                  on-change="background.changeColor(color)"
+                                                                  options="{showInput: true, showAlpha: true,  allowEmpty:true, showInitial: true, showInput: true,  showPalette: true, palette: [ ],  preferredFormat: 'hex',   showSelectionPalette: true,maxSelectionSize: 4}">
+
+                                            </spectrum-colorpicker>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="backgroundimage">
+                                    <div class="row margin-20">
+                                        <div class="col-md-12 text-right">
+                                            <button class="btn btn-default" ng-click="prevPage()"
+                                                    ng-disabled="!hasPrev()">Prev
+                                            </button>
+                                            <button class="btn btn-default margin-left-15" ng-click="nextPage()"
+                                                    ng-disabled="!hasNext()">Next
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="">
+                                            <img ng-click="changeBackgroundImageUrl(getImageUrlFromPath(item))"
+                                                 ng-src="{{getImageUrlFromPath(item)}}" alt="" class="toggle"
+                                                 ng-repeat="item in images"
+                                                 style="height: 60px;width:60px; margin:3px"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="row margin-20">
+                                        <div class="col-md-12 text-right">
+                                            <button class="btn btn-default" ng-click="prevPage()"
+                                                    ng-disabled="!hasPrev()">Prev
+                                            </button>
+                                            <button class="btn btn-default margin-left-15" ng-click="nextPage()"
+                                                    ng-disabled="!hasNext()">Next
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--option:end-->
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>
