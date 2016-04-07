@@ -1,3 +1,4 @@
+.navbar .navbar-brand,.quotesform-brand{font-family:Pacifico,cursive}
 canvas{border:1px solid gray}
 .composer{position:relative;overflow:hidden;width:600px;height:400px;display:block}
 .editor,.options{width:600px;display:inline-block}
@@ -14,5 +15,5 @@ canvas{border:1px solid gray}
 .padding-top-5{padding-top:5px}
 .action-icon{min-width:36px;padding:10px;border:1px solid #777}
 .action-icon-active,.action-icon:hover{background:#777;color:#fff}
-.quotesform-brand{position:absolute;bottom:5px;left:30px;color:#FFF;opacity:.6;font-family:Pacifico,cursive;font-size:16px;text-shadow:2px 0 10px #000}
+.quotesform-brand{position:absolute;bottom:5px;left:30px;color:#FFF;opacity:.6;font-size:16px;text-shadow:2px 0 10px #000}
 .ta-hidden-input{visibility:hidden}
