@@ -1,3 +1,31 @@
+CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, lineHeight) {
+
+    var lines = text.split("\n");
+
+    for (var i = 0; i < lines.length; i++) {
+
+        var words = lines[i].split(' ');
+        var line = '';
+
+        for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = this.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                this.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+
+        this.fillText(line, x, y);
+        y += lineHeight;
+    }
+};
+
+
 var app = angular.module('ComposeImageApp', ['ngResource', 'angularSpectrumColorpicker']);
 
 app.controller('AppController', AppController);
@@ -31,9 +59,11 @@ function Remote($resource, $location) {
 AppController.$inject = ['$scope', '$window', '$location', '$timeout', 'Remote'];
 function AppController($scope, $window, $location, $timeout, Remote) {
     var IMAGE_SERVER = 'http://image.quotesform.com';
-    var canvas = document.getElementById('mycanvas');
+    var canvas = document.getElementById('composercanvas');
     var ctx = canvas.getContext('2d');
     var img = new Image();
+    img.crossOrigin = true;
+    //img.setAttribute('crossOrigin', 'anonymous');
     img.onload = imageLoaded;
     $scope.background = {
         canvas: canvas,
@@ -103,6 +133,7 @@ function AppController($scope, $window, $location, $timeout, Remote) {
     $scope.changeFontStyle = changeFontStyle;
     $scope.changeTextTransform = changeTextTransform;
     $scope.resetTextSliders = resetTextSliders;
+    $scope.renderImage = renderImage;
 
 
     init();
@@ -414,25 +445,73 @@ function AppController($scope, $window, $location, $timeout, Remote) {
 
 
     function downloadImage() {
-        html2canvas(document.getElementById("composer"), {
-            allowTaint: false,
-            logging: true,
-            onrendered: function (canvas) {
-                var link = document.createElement('a');
-                link.href = canvas.toDataURL();
-                link.download = 'Image.png';
-                document.body.appendChild(link);
-                link.click();
-            }
-        });
+        var canvas = renderImage();
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL();
+        link.download = 'Image.png';
+        document.body.appendChild(link);
+        link.click();
+    }
 
+
+    function renderImage() {
+        var inCanvas = document.getElementById('composercanvas');
+        var outCanvas = document.getElementById('outcanvas');
+        var ctx = outCanvas.getContext('2d');
+        var dest = $scope.background.dime.dest;
+        ctx.clearRect(0, 0, dest.right, dest.bottom);
+        ctx.drawImage(inCanvas, 0, 0, dest.right, dest.bottom);
+        var logo = document.getElementById('quotesform-logo');
+        ctx.globalAlpha = 0.6;
+        ctx.drawImage(logo, 20, dest.bottom - 40);
+        ctx.font = "16px Pacifico"
+        ctx.fillStyle = '#fff';
+        ctx.fillText("QuotesForm.com", 45, dest.bottom - 20);
+        ctx.globalAlpha = 1;
+
+        var texts = $('.text');
+        for (var i = 0; i < texts.length; i++) {
+            var text = $(texts[i]);
+            if (text) {
+                var content = text.text();
+                var font = '';
+                var fontWeight = text.css('font-weight');
+                var fontStyle = text.css('font-style');
+                var textCaps = text.css('text-transform')
+
+                if (fontWeight && fontWeight != 'normal') {
+                    font += ' ' + fontWeight;
+                }
+                if (fontStyle && fontStyle != 'normal') {
+                    font += ' ' + fontStyle;
+                }
+                if (textCaps && content && textCaps != 'none') {
+                    content = content.toUpperCase();
+                }
+                font += ' ' + text.css('font-size') + ' ' + text.css('font-family');
+
+                console.log(font);
+
+                ctx.fillStyle = '' + text.css('color');
+                ctx.font = font;
+                ctx.textBaseline = "top";
+                ctx.shadowOffsetX = 3;
+                ctx.shadowOffsetY = 3;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#000'
+                ctx.wrapText(content, text.position().left - 5, text.position().top + 15, text.width() + 10, lineHeight(texts[i]));
+            }
+        }
+
+
+        console.log('Render completed');
+        return outCanvas;
     }
 
     function loadBackgroundImages() {
         console.log('loadBackgroundImages called');
         nextPage();
     }
-
 
     function changeBackgroundImageUrl(url) {
         $scope.background.image.src = url;
@@ -556,6 +635,7 @@ function AppController($scope, $window, $location, $timeout, Remote) {
         $(this).addClass("text-active");
         $scope.selectedTextElement = this;
 
+        resetTextSliders();
     }
 
 

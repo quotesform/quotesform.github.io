@@ -25,6 +25,7 @@ canvas {
     cursor: move;
     padding: 5px;
     margin: 5px;
+    text-align: left;
 }
 
 .ui-resizable-helper {
@@ -79,26 +80,13 @@ canvas {
     color: #ffffff;
 }
 
-.toggle {
-    -webkit-transition: linear 2s;
-    -moz-transition: linear 2s;
-    -ms-transition: linear 2s;
-    -o-transition: linear 2s;
-    transition: linear 2s;
-}
-
-.toggle.ng-enter {
-    opacity: 0;
-}
-
-.toggle.ng-enter-active {
-    opacity: 1;
-}
-
-.toggle.ng-leave {
-    opacity: 1;
-}
-
-.toggle.ng-leave-active {
-    opacity: 0;
+.quotesform-brand {
+    position: absolute;
+    bottom: 5px;
+    left: 30px;
+    color: #FFFFFF;
+    opacity: .6;
+    font-family: 'Pacifico', cursive;
+    font-size: 16px;
+    text-shadow: 2px 0px 10px #000;
 }
