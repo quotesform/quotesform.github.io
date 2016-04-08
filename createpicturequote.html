@@ -100,6 +100,9 @@
                                         <li><a href="#backgroundimage" role="tab" id="backgroundadimage-tab"
                                                data-toggle="tab"
                                                aria-controls="backgroundimage">Image</a></li>
+                                        <li><a href="#backgroundimageupload" role="tab" id="backgroundadimageupload-tab"
+                                               data-toggle="tab"
+                                               aria-controls="backgroundimageupload">Upload image</a></li>
 
                                         <li><a href="#backgroundcolor" role="tab" id="backgroundadcolor-tab"
                                                data-toggle="tab"
@@ -161,7 +164,7 @@
                                             <p>
                                             <ol>
                                                 <li>Select background image or color</li>
-                                                <li>Add text, change photo, adjust text placement</li>
+                                                <li>Add text, change font, adjust text placement</li>
                                                 <li>Download or share your personalize picture</li>
                                             </ol>
                                             </p>
@@ -306,6 +309,15 @@
                                                          class="padding-5"></div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="backgroundimageupload">
+                                    <div class="row">
+                                        <div class="col-xs-12 margin-20">
+                                            <input id="uploadImage" type="file" accept="image/*" name="myUploadImage"  onchange="angular.element(this).scope().imageUploaded()" />
+
                                         </div>
                                     </div>
                                 </div>
