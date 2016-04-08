@@ -2,7 +2,7 @@
 canvas{border:1px solid gray}
 .composer{position:relative;overflow:hidden;width:600px;height:400px;display:block}
 .editor,.options{width:600px;display:inline-block}
-.text{position:absolute;left:50px;top:20px;color:#fff;font-size:18px;text-shadow:3px 3px 8px #000;cursor:move;padding:5px;margin:5px;text-align:left}
+.text{position:absolute;left:50px;top:20px;color:#fff;font-size:18px;text-shadow:3px 3px 8px #000;cursor:move;padding:5px;text-align:left}
 .ui-resizable-helper{border:1px dotted gray}
 .text-active{border:1px dashed #007FBB}
 .font{padding:3px;margin:2px;border:1px solid #ddd;display:inline-block;cursor:pointer}
@@ -15,5 +15,5 @@ canvas{border:1px solid gray}
 .padding-top-5{padding-top:5px}
 .action-icon{min-width:36px;padding:10px;border:1px solid #777}
 .action-icon-active,.action-icon:hover{background:#777;color:#fff}
-.quotesform-brand{position:absolute;bottom:5px;left:30px;color:#FFF;opacity:.6;font-size:16px;text-shadow:2px 0 10px #000}
+.quotesform-brand{position:absolute;bottom:20px;left:30px;color:#FFF;opacity:.6;font-size:16px;text-shadow:2px 0 10px #000}
 .ta-hidden-input{visibility:hidden}

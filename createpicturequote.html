@@ -8,8 +8,14 @@
     <base href="/">
 
     <title>Create Picture Quote - QuotesForm.com</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description"
+          content="Create awesome custom picture quotes, posters, banners, social media
+                    profile covers using QuotesForm.com picture editor and personalize them
+                    with our collection of photos, your own photo, graphic, background images,
+                    and text of your own language. Share on Facebook, Google Plus, Pinterest, Twitter, Instagram,
+                    e-card, Wallpaper.">
+    <meta name="author"
+          content="create picture quote, write text on top of a image, design an image for social networking,quote design">
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -45,13 +51,6 @@
 <nav id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="/" target="_self">
                 <img src="/favicon-gray-20x20.png">
             </a>
@@ -71,8 +70,8 @@
                         <div id="composer">
                             <canvas id="composercanvas" width="600" height="400"></canvas>
                             <div class="quotesform-brand" id="quotesform-brand">
-                                <img style="margin-bottom: 15px" id="quotesform-logo"
-                                     src="/favicon-white-20x20.png">
+                                <!--<img style="margin-bottom: 15px" id="quotesform-logo"
+                                     src="/favicon-white-20x20.png">-->
                                 <span id="quotesform-text">QuotesForm.com</span>
                             </div>
                         </div>
@@ -138,17 +137,34 @@
                                     </ul>
                                 </li>
 
+                                <li role="presentation">
+                                    <a href="#download" aria-controls="download" role="tab"
+                                       data-toggle="tab">Download</a>
+                                </li>
+
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="home">
                                     <div class="row">
-                                        <div class="col-xs-12 margin-20">
-                                            <button class="btn btn-default" ng-click="downloadImage()">
-                                                <i class="fa fa-download" style="padding-right: 5px"></i>
-                                                <span>Download image</span>
-                                            </button>
+                                        <div class="col-xs-12 text-left">
+                                            <p>Create awesome custom picture quotes, posters, banners, social media
+                                                profile covers using QuotesForm.com picture editor and personalize them
+                                                with our collection of photos, your own photo, graphic, background
+                                                images,
+                                                and text of your own language. Share on Facebook, Google Plus,
+                                                Pinterest, Twitter, Instagram,
+                                                e-card, Wallpaper.
+                                            </p>
+
+                                            <p>
+                                            <ol>
+                                                <li>Select background image or color</li>
+                                                <li>Add text, change photo, adjust text placement</li>
+                                                <li>Download or share your personalize picture</li>
+                                            </ol>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +188,6 @@
 
 
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="textselect">select</div>
                                 <div role="tabpanel" class="tab-pane" id="textfont">
                                     <div class="row">
                                         <div class="col-xs-12 margin-20">
@@ -339,6 +354,17 @@
                                                     ng-disabled="!hasNext()">Next
                                             </button>
 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="download">
+                                    <div class="row">
+                                        <div class="col-xs-12 margin-20">
+                                            <button class="btn btn-default" ng-click="downloadImage()">
+                                                <i class="fa fa-download" style="padding-right: 5px"></i>
+                                                <span>Download image</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
